@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="~{fragments/common.html :: head}"></head>
+<body>
+
+<div class="container">
+  <div th:replace="~{fragments/header.html :: navbar}"></div>
+
+  <h1>List of Employees</h1>
+
+  <a th:href="@{/employees/create}" class="btn btn-primary">Create New Employee</a>
+  <table class="table table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Operations</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="emp : ${employees}">
+        <td th:text="${emp.firstName}"></td>
+        <td th:text="${emp.lastName}"></td>
+        <td th:text="${emp.email}"></td>
+        <td>
+          <a th:href="@{/employees/update(id=${emp.id})}" class="btn btn-success">Update</a>
+          <a th:href="@{/employees/delete(id=${emp.id})}" class="btn btn-danger">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div th:replace="~{fragments/footer.html :: footer}"></div>
+</div>
+
+</body>
+</html>

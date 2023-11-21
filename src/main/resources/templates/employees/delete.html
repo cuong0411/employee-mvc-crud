@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="~{fragments/common.html :: head}">
+<body>
+<div class="container">
+  <div th:replace="~{fragments/header :: navbar}"></div>
+
+  <h1>Delete Employee</h1>
+  <hr>
+  <form th:action="@{/employees/remove}" th:object="${employee}" method="post">
+    <div class="mb-3">
+      <input type="text" hidden th:field="*{id}">
+    </div>
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" th:field="*{firstName}" readonly>
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input type="text" class="form-control" id="lastName" placeholder="Enter your first name" th:field="*{lastName}" readonly>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter your first name" th:field="*{email}" readonly>
+    </div>
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a th:href="@{/employees}" class="btn btn-info">Back to List</a>
+  </form>
+
+  <div th:replace="~{fragments/footer.html :: footer}"></div>
+</div>
+</body>
+</html>
