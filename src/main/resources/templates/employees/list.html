@@ -4,10 +4,9 @@
       xmlns="http://www.w3.org/1999/xhtml">
 <head th:replace="~{fragments/common.html :: head}"></head>
 <body>
+<div th:replace="~{fragments/header.html :: navbar}"></div>
 
 <div class="container">
-  <div th:replace="~{fragments/header.html :: navbar}"></div>
-
   <h1>List of Employees</h1>
 
   <a th:href="@{/employees/create}" class="btn btn-primary">Create New Employee</a>
@@ -33,8 +32,8 @@
     </tbody>
   </table>
 
-  <div th:replace="~{fragments/footer.html :: footer}"></div>
 </div>
 
+<div th:replace="~{fragments/footer.html :: footer}"></div>
 </body>
 </html>

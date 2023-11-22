@@ -5,9 +5,9 @@
 <head th:replace="~{fragments/common.html :: head}">
 </head>
 <body>
-<div class="container">
-  <div th:replace="~{fragments/header :: navbar}"></div>
+<div th:replace="~{fragments/header :: navbar}"></div>
 
+<div class="container">
   <h1>Create New Employee</h1>
   <hr>
   <form th:action="@{/employees/save}" th:object="${employee}" method="post">
@@ -36,7 +36,8 @@
     <a th:href="@{/employees}" class="btn btn-info">Back to List</a>
   </form>
 
-  <div th:replace="~{fragments/footer.html :: footer}"></div>
 </div>
+
+<div th:replace="~{fragments/footer.html :: footer}"></div>
 </body>
 </html>

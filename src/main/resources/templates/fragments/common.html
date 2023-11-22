@@ -7,10 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link th:href="@{/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
-<!--  <link rel="stylesheet" th:href="@{/assets/style.css}">-->
-<!--  <script src="/assets/js/color-modes.js"></script>-->
   <script src="/assets/dist/js/bootstrap.bundle.min.js" defer></script>
   <title th:text="${title == null ? 'Employee CRUD Demo' : 'sdf'}"></title>
+  <style>
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+  </style>
 </head>
 <body>
 
