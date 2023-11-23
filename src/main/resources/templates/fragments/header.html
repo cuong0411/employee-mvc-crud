@@ -42,6 +42,7 @@
           <a th:href="@{/signup}" class="btn btn-info">Sign up</a>
           <a th:href="@{/login}" class="btn btn-primary">Login</a>
         </div>
+        <!-- Check if the user is authenticated, display logout button -->
         <div th:if="${#authorization.expression('isAuthenticated()')}">
           <form th:action="@{/logout}" method="post">
             <input type="submit" th:value="Logout" class="btn btn-secondary">

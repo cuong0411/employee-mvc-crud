@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml">
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
   <th:block th:insert="~{fragments/common.html :: common-head}"></th:block>
   <title>Home Page</title>
@@ -11,6 +12,15 @@
 
   <div class="container">
     <h1>Home Page</h1>
+    <hr>
+    <p th:if="${#authorization.expression('isAuthenticated()')}">
+      Hi, <span class="text-primary" sec:authentication="principal.username"></span>
+      You have role: <span class="text-bg-success" sec:authentication="principal.authorities"></span>.
+    </p>
+    <p th:unless="${#authorization.expression('isAuthenticated()')}" class="text-info">
+      You have not logged in yet!
+    </p>
+    <hr>
   </div>
 
   <footer th:replace="~{fragments/footer.html :: footer}"></footer>
