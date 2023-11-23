@@ -41,7 +41,9 @@ public class SecurityConfig {
                 configurer.requestMatchers("/contact").permitAll();
                 configurer.requestMatchers("/").permitAll();
                 configurer.requestMatchers("").permitAll();
-                configurer.requestMatchers("/employees/**").authenticated();
+//                configurer.requestMatchers("/employees/**").authenticated();
+                configurer.requestMatchers("/employees").hasAnyRole("MANAGER", "ADMIN");
+                configurer.requestMatchers("/employees/**").hasRole("ADMIN");
             })
             .formLogin(form -> form
                     .loginPage("/login")

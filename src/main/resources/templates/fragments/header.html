@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
   <title></title>
 </head>
@@ -38,12 +40,14 @@
       </ul>
       <div class="d-flex">
         <!-- If the user is not authenticated, display login and sign-up buttons -->
-        <div th:unless="${#authorization.expression('isAuthenticated()')}">
+<!--        <div th:unless="${#authorization.expression('isAuthenticated()')}">-->
+        <div sec:authorize="!isAuthenticated()">
           <a th:href="@{/signup}" class="btn btn-info">Sign up</a>
           <a th:href="@{/login}" class="btn btn-primary">Login</a>
         </div>
         <!-- Check if the user is authenticated, display logout button -->
-        <div th:if="${#authorization.expression('isAuthenticated()')}">
+<!--        <div th:if="${#authorization.expression('isAuthenticated()')}">-->
+        <div sec:authorize="isAuthenticated()">
           <form th:action="@{/logout}" method="post">
             <input type="submit" th:value="Logout" class="btn btn-secondary">
           </form>
