@@ -36,10 +36,18 @@
           </ul>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <div class="d-flex">
+        <!-- If the user is not authenticated, display login and sign-up buttons -->
+        <div th:unless="${#authorization.expression('isAuthenticated()')}">
+          <a th:href="@{/signup}" class="btn btn-info">Sign up</a>
+          <a th:href="@{/login}" class="btn btn-primary">Login</a>
+        </div>
+        <div th:if="${#authorization.expression('isAuthenticated()')}">
+          <form th:action="@{/logout}" method="post">
+            <input type="submit" th:value="Logout" class="btn btn-secondary">
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </nav>

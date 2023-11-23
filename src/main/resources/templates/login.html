@@ -5,23 +5,21 @@
 <head>
   <th:block th:insert="~{fragments/common.html :: common-head}"></th:block>
   <title>Login Page</title>
-  <style>
-    h1 {color: red;}
-  </style>
 </head>
 <body>
   <div th:replace="~{fragments/header.html :: navbar}"></div>
 
   <div class="row">
-    <h1>Testing heading</h1>
     <main class="offset-md-2 col-md-8">
+      <div th:if="${param.logout}" class="alert alert-success" role="alert">
+        You have been logged out
+      </div>
+      <div th:if="${param.error}" class="alert alert-danger" role="alert">
+        Sorry! The username or password you entered is invalid!
+      </div>
+
       <form th:action="@{/authenticateTheUser}" method="post">
-
-        <div th:if="${param.error}">
-          <p class="text-danger">Sorry! The username or password you entered is invalid!</p>
-        </div>
-
-        <img class="mb-4" th:href="@{/assets/brand/bootstrap-logo.svg}" alt="" width="72" height="57">
+        <img class="mb-4" th:src="@{/assets/brand/bootstrap-logo.svg}" alt="" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
         <div class="form-floating">
