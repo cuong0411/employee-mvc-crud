@@ -2,13 +2,18 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
-<head th:replace="~{fragments/common.html :: head}">
+<head>
+  <th:block th:insert="~{fragments/common.html :: common-head}"></th:block>
   <title>Login Page</title>
+  <style>
+    h1 {color: red;}
+  </style>
 </head>
 <body>
   <div th:replace="~{fragments/header.html :: navbar}"></div>
 
   <div class="row">
+    <h1>Testing heading</h1>
     <main class="offset-md-2 col-md-8">
       <form th:action="@{/authenticateTheUser}" method="post">
 
