@@ -41,6 +41,7 @@ public class SecurityConfig {
                 configurer.requestMatchers("/contact").permitAll();
                 configurer.requestMatchers("/").permitAll();
                 configurer.requestMatchers("").permitAll();
+                configurer.requestMatchers("/access-denied").permitAll();
 //                configurer.requestMatchers("/employees/**").authenticated();
                 configurer.requestMatchers("/employees").hasAnyRole("MANAGER", "ADMIN");
                 configurer.requestMatchers("/employees/**").hasRole("ADMIN");
@@ -49,7 +50,8 @@ public class SecurityConfig {
                     .loginPage("/login")
                     .loginProcessingUrl("/authenticateTheUser") // no need request mapping required for this
                     .permitAll())
-            .logout(LogoutConfigurer::permitAll);
+            .logout(LogoutConfigurer::permitAll)
+            .exceptionHandling(customizer -> customizer.accessDeniedPage("/access-denied"));
         return http.build();
     }
 }

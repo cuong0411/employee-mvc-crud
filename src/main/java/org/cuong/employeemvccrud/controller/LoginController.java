@@ -8,8 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class LoginController {
 
     @GetMapping("/login")
-    public String login(Model model) {
-//        model.addAttribute("title", "Login Page");
+    public String login() {
         return "login";
+    }
+
+    @GetMapping("/access-denied")
+    public String accessDenied() {
+        return "access-denied";
     }
 }
