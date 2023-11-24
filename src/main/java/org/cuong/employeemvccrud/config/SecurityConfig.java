@@ -7,12 +7,17 @@ import org.springframework.security.config.annotation.web.configurers.LogoutConf
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 @Configuration
 public class SecurityConfig {
 
-    @Bean
+    // hard code users and exist in memory
+/*    @Bean
     InMemoryUserDetailsManager userDetailsManager() {
         UserDetails ana = User.builder()
                 .username("ana")
@@ -30,6 +35,12 @@ public class SecurityConfig {
                 .roles("EMPLOYEE", "MANAGER", "ADMIN")
                 .build();
         return new InMemoryUserDetailsManager(ana, topson, ceb);
+    }*/
+
+    // users in database
+    @Bean
+    UserDetailsManager userDetailsManager(DataSource dataSource) { // spring will inject datasource
+        return new JdbcUserDetailsManager(dataSource);
     }
 
     @Bean
