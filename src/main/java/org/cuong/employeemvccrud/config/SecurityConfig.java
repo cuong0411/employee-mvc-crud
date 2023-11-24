@@ -41,7 +41,12 @@ public class SecurityConfig {
     @Bean
     UserDetailsManager userDetailsManager(DataSource dataSource) { // spring will inject datasource
         System.out.println(dataSource); // HikariDataSource
-        return new JdbcUserDetailsManager(dataSource);
+
+        // use custom table and column names: members and roles
+        var userDetailsManager = new JdbcUserDetailsManager(dataSource);
+        userDetailsManager.setUsersByUsernameQuery("select user_id,pw,active from members where user_id = ?");
+        userDetailsManager.setAuthoritiesByUsernameQuery("select user_id,role from roles where user_id = ?");
+        return userDetailsManager;
     }
 
     @Bean
