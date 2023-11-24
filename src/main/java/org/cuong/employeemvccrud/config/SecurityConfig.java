@@ -40,6 +40,7 @@ public class SecurityConfig {
     // users in database
     @Bean
     UserDetailsManager userDetailsManager(DataSource dataSource) { // spring will inject datasource
+        System.out.println(dataSource); // HikariDataSource
         return new JdbcUserDetailsManager(dataSource);
     }
 
